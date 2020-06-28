@@ -1,64 +1,87 @@
 <template>
   <div class="header">
-    <div class="sider-bar-button">
-      <font-awesome-icon prefix="fas" icon="bars" @click="sideBarSwitch()"></font-awesome-icon>
+    <div class="side-bar-switch" @click="sideBarSwitch()">
+      <font-awesome-icon prefix="fas" icon="bars"></font-awesome-icon>
     </div>
-    <div class="header-user-avatar base-button">
-      <img src="../assets/images/alien.png" width="80%" alt="alien" />
+    <div class="header-start-recommend base-button">
+      开 始
+    </div>
+    <div class="header-user-avatar">
+      <img src="../assets/images/alien.png" width="90%" alt="alien" />
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "Header",
-  methods: {
-    sideBarSwitch() {
-      let sideBarDiv = document.getElementsByClassName("home-sider-bar")[0];
-      sideBarDiv.classList.toggle("hide-sider-bar");
-      let headerDiv = document.getElementsByClassName("header")[0];
-      headerDiv.classList.toggle("bigger-header");
-      let homeContentDiv = document.getElementsByClassName("home-content")[0];
-      homeContentDiv.classList.toggle("bigger-header");
+  import TimelineLite from "gsap";
+
+  export default {
+    name: "Header",
+    data() {
+      return {
+        hideSiderBar: true
+      }
+    },
+    methods: {
+      sideBarSwitch() {
+        this.hideSiderBar = !this.hideSiderBar;
+        if (this.hideSiderBar) {
+          TimelineLite.to('.side-bar', {time: 0.3, left: '-200px', pointerEvents: 'none'});
+          TimelineLite.to('.header', {time: 0.3, left: 0});
+        }
+        else {
+          TimelineLite.to('.side-bar', {time: 0.3, left: '0', pointerEvents: 'auto'});
+          TimelineLite.to('.header', {time: 0.3, left: '200px'});
+        }
+      }
     }
   }
-};
 </script>
 
 <style lang="scss">
-.header {
-  position: fixed;
-  top: 0;
-  left: 200px;
-  right: 0;
-  height: 0;
-  box-shadow: set-shadow(0.2);
-  background-color: $background-w;
-  transition: all 0.3s;
-  z-index: 3;
-  opacity: 0;
-  .sider-bar-button {
-    position: absolute;
-    top: 0;
+  .header {
+    position: fixed;
     left: 0;
-    width: 60px;
-    height: 60px;
-    font: bolder 30px Roboto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg > path {
-      color: $primary;
+    right: 0;
+    height: 0;
+    opacity: 0;
+    z-index: 3;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    background-color: #1a202c;
+    overflow: hidden;
+    .side-bar-switch {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .header-start-recommend {
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      right: 60px;
+      width: 100px;
+      border-radius: 20px;
+      font: bold 16px Roboto;
+    }
+    .header-user-avatar {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: $background-w;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
     }
   }
-  .header-user-avatar {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    background-color: $primary;
-  }
-}
 </style>

@@ -1,9 +1,14 @@
-$primary: #409EFF;
-$success: #67C23A;
+$primary: #61afef;
+$primary-b: #2d3748;
+$primary-text-w: #f7fafc;
+$primary-text-b: #1a202c;
+$background-w: #f7fafc;
+$background-b: #1a202c;
+
+$success: #98c379;
 $warning: #E6A23C;
 $danger: #F56C6C;
 $info: #909399;
-$primary-text: #303133;
 $regular-text: #606266;
 $secondary-text: #909399;
 $Placeholder: #C0C4CC;
@@ -11,8 +16,7 @@ $border-base: #DCDFE6;
 $border-light: #E4E7ED;
 $border-lighter: #EBEEF5;
 $border-extralight: #F2F6FC;
-$background-b:#000000;
-$background-w: #FFFFFF;
+
 
 @function set-shadow($num) {
   @return 0 2px 12px 0 rgba(0, 0, 0, $num);
@@ -21,7 +25,7 @@ $background-w: #FFFFFF;
 .base-button {
   background-color: $primary;
   color: $background-w;
-  box-shadow: set-shadow(0.2);
+  box-shadow: set-shadow(0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,5 +36,83 @@ $background-w: #FFFFFF;
   text-decoration: none;
   &:hover {
     background-color: rgba($primary, 0.8);
+  }
+}
+
+.disable-button {
+  cursor: not-allowed;
+  background-color: $info;
+  &:hover {
+    background-color: rgba($info, 0.8);
+  }
+}
+
+.card {
+  box-shadow: set-shadow(0.3);
+  border-radius: 5px;
+  background-color: $background-b;
+  .card-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+    .card-left-title {
+      color: $primary-text-w;
+      font: bold 20px Roboto;
+      svg {
+        margin-right: 10px;
+      }
+      svg > path {
+        color: $primary-text-w;
+      }
+    }
+    .card-right-title {
+      cursor: pointer;
+      color: $primary;
+      font: bold 20px Roboto;
+      svg {
+        margin-right: 10px;
+      }
+      svg > path {
+        color: $primary;
+      }
+    }
+  }
+}
+
+form {
+  .form-button {
+    width: 100%;
+    height: 40px;
+    font: 20px Roboto;
+    margin: 20px 0 20px 0;
+    border-radius: 5px;
+  }
+  .text-input{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    font: 20px Roboto;
+    input,
+    select {
+      outline: none;
+      border: none;
+      text-decoration: none;
+      width: 100%;
+      height: 40px;
+      padding: 0 20px 0 20px;
+      font: bold 18px Roboto;
+      border-radius: 5px;
+      background-color: $background-w;
+      transition: all 0.3s;
+      color: $background-b;
+    }
   }
 }

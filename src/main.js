@@ -1,12 +1,16 @@
-import Vue from "vue";
-import "./plugins/fontawesome";
-import "./plugins/axios";
-import App from "./App.vue";
-import router from "./router";
+import Vue from 'vue'
+import './plugins/axios'
+import './plugins/fontawesome'
+import App from './App.vue'
+import router from './router'
+import base from './plugins/public';
 
-Vue.config.productionTip = false;
+Vue.use(base);
+
+Vue.config.productionTip = false
+Vue.prototype.$EventBus = new Vue()
 
 new Vue({
   router,
   render: h => h(App)
-}).$mount("#app");
+}).$mount('#app');
