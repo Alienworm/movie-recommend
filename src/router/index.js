@@ -6,11 +6,11 @@ import SignUp from "../views/sign/SignUp";
 import Home from "../views/Home";
 import Index from "../views/Index";
 import Search from "../views/Search";
-import Result from "../views/Result";
+import Recommend from "../views/Recommend";
 
 Vue.use(VueRouter);
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Sign',
@@ -44,13 +44,18 @@ Vue.use(VueRouter);
         component: Search
       },
       {
-        path: "/home/result",
-        name: "Result",
-        component: Result
-      }
+        path: "/home/recommend",
+        name: "Recommend",
+        component: Recommend
+      },
     ]
   }
 ];
+
+const originalPush = VueRouter.prototype.push
+  VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+};
 
 const router = new VueRouter({
   mode: 'history',

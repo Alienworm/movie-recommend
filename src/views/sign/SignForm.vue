@@ -46,50 +46,18 @@
       }
       button {
         width: 100%;
-        height: 40px;
+        height: 50px;
         margin: 40px 0 40px 0;
       }
-      .text-input {
+      .base-input {
+        position: relative;
         width: 100%;
-        height: 80px;
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: column;
-        font: 20px Roboto;
-        margin: 20px 0 20px 0;
-        input,
-        select {
-          outline: none;
-          border: none;
-          text-decoration: none;
-          width: 100%;
-          height: 40px;
-          padding: 0 20px 0 20px;
-          font: bold 18px Roboto;
-          border-radius: 5px;
-          background-color: $card-primary-text;
-          transition: all 0.3s;
-          color: $card-background;
-        }
-      }
-      input[type="checkbox"] {
-        margin-right: 10px;
-        -webkit-appearance: none;
-        vertical-align: middle;
-        margin-top: 0;
-        background: $card-primary-text;
-        border-radius: 5px;
-        min-height: 20px;
-        min-width: 20px;
-        outline: none;
-        border: none;
-        transition: all 0.3s;
-        cursor: pointer;
-      }
-      input[type="checkbox"]:checked {
-        background: $highlight;
+        margin: 40px 0 40px 0;
       }
     }
   }
-
+  .sign-form-hide {
+    opacity: 0;
+    pointer-events: none;
+  }
 </style>

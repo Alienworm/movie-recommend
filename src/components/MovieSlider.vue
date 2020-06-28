@@ -1,15 +1,12 @@
 <template>
   <div class="movie-slider">
-    <div class="movie-slider-container card"
-         v-for="(movie, index) in movieList" :key="index"
-         :style="bg_left + movie.movieImage + bg_right"
-         @click="showMovieDetailCard(movie)"
-         @mouseover="showMovieName(true, index)"
-         @mouseleave="showMovieName(false, index)">
-      <div :class="['movie-slider-container-movie-name', 'movie-name-' + index]">
-        <span>{{movie.movieName}}</span>
-      </div>
-    </div>
+    <MovieCard class="movie-slider-container"
+               v-for="(movie, index) in movieList"
+               :movie="movie" :key="index"
+               name-height="60px"
+               name-font-size="24px"
+               :rating="false">
+    </MovieCard>
     <div class="movie-slider-prev-button" @click="prevImage()">
       <font-awesome-icon prefix="fas" icon="arrow-left"></font-awesome-icon>
     </div>
@@ -20,22 +17,16 @@
 </template>
 
 <script>
+  import MovieCard from "./MovieCard";
   import TimelineLite from "gsap";
-
   export default {
     name: "MovieSlider",
-    data() {
-      return {
-        bg_left: 'background-image: url("',
-        bg_right: '")',
-        movieList: [],
-        currentImage: 2,
-      }
+    components: {MovieCard},
+    props: {
+      movieList: Array
     },
     mounted() {
-      this.$ajax.post('/movie/getRandomMovie', {count: 5}).then((data) => {
-        this.movieList = data.data;
-      });
+      setInterval(this.prevImage, 3000);
     },
     methods: {
       nextImage() {
@@ -52,9 +43,6 @@
         this.$EventBus.$emit("updateMovieInfo", movie);
         TimelineLite.to('.movie-detail-card', {duration: 0.5, width: '100vw', height: '100vh', top: 0, left: 0, opacity: 1, pointerEvents: 'auto'});
         TimelineLite.to('.movie-detail-card-container', {duration: 0.5, opacity: 1, delay: 0.5, pointerEvents: 'auto'});
-      },
-      showMovieName(flag, index) {
-        TimelineLite.to('.movie-name-' + index, {duration: 0.5, opacity: flag === true ? 1 : 0});
       }
     }
   }
@@ -92,38 +80,6 @@
     .movie-slider-container {
       position: absolute;
       transition: all .3s;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      cursor: pointer;
-      .movie-slider-container-movie-name {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 80px;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-        font: bold 40px Roboto;
-        padding: 0 20px 0 20px;
-        opacity: 0;
-        border-radius: 0 0 5px 5px;
-        &::after {
-          position: absolute;
-          content: "";
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.7);
-          z-index: 1;
-          border-radius: 0 0 5px 5px;
-        }
-        span {
-          z-index: 2;
-        }
-      }
     }
     .movie-slider-container:nth-child(1),
     .movie-slider-container:nth-child(5) {

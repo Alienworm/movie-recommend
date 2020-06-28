@@ -1,34 +1,32 @@
 <template>
   <div id="app">
-    <MovieDetailCard></MovieDetailCard>
-    <router-view/>
+    <router-view style="z-index: 1"/>
+    <MovieDetail style="z-index: 2"></MovieDetail>
+    <BaseNotification style="z-index: 3"></BaseNotification>
+    <BaseLoader style="z-index: 4"></BaseLoader>
   </div>
 </template>
 
 <style lang="scss">
   * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
     color: $card-primary-text;
+    letter-spacing: 0.5px;
+    word-spacing: 1.5px;
+    font-family: Roboto;
   }
 
   body {
     background-color: $background;
   }
-
-  #app {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $background;
-  }
 </style>
 <script>
-  import MovieDetailCard from "./components/MovieDetailCard";
+  import MovieDetail from "./components/MovieDetail";
+  import BaseNotification from "./components/BaseNotification";
+  import BaseLoader from "./components/BaseLoader";
   export default {
-    components: {MovieDetailCard}
+    components: {BaseLoader, BaseNotification, MovieDetail}
   }
 </script>

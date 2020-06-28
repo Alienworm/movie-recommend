@@ -1,43 +1,51 @@
 <template>
-  <div class="sign-in">
-    <button class="switch-button base-button" @click="showSignUp()">
+  <BaseCard class="sign-in">
+    <BaseButton class="switch-button" @click.native="showSignUp">
       <font-awesome-icon prefix="fax" icon="sync-alt"></font-awesome-icon>
-    </button>
-    <SideBar :side-bar-image-url="require('../../assets/images/sign-in-red.gif')">
+    </BaseButton>
+    <BaseSidebar :base-sidebar-image-url="require('../../assets/images/sign-in.gif')">
       <span>Movies</span>
       <p>
         Movies move us like nothing else can, whether they’re scary, funny,
         dramatic, romantic or anywhere in-between. So many titles, so much to
         experience.
       </p>
-    </SideBar>
-    <SignForm title="登 录" :hide="false">
+    </BaseSidebar>
+    <SignForm title="登 录">
       <form>
-        <label class="text-input">
-          账 号<input type="text" v-model="userInfo.username" />
-        </label>
-        <label class="text-input">
-          密 码<input type="password" v-model="userInfo.password" />
-        </label>
-        <button class="base-button" @click="signIn()">登 录</button>
-        <label class="input-checkbox">
-          <input type="checkbox" @click="rememberMe()"/> 记 住 密 码
-        </label>
+        <BaseInput>
+          <label>
+            <input type="text" v-model="user.username" />
+            <span>用 户 名</span>
+            <font-awesome-icon prefix="fax" icon="user"></font-awesome-icon>
+          </label>
+        </BaseInput>
+        <BaseInput>
+          <label>
+            <input type="password" v-model="user.password" />
+            <span>密 码</span>
+            <font-awesome-icon prefix="fax" icon="key"></font-awesome-icon>
+          </label>
+        </BaseInput>
+        <BaseButton @click.native="signIn">登 录</BaseButton>
       </form>
     </SignForm>
-  </div>
+  </BaseCard>
 </template>
 
 <script>
-  import SideBar from "../../components/SideBar";
+  import BaseCard from "../../components/BaseCard";
+  import BaseSidebar from "../../components/BaseSidebar";
   import SignForm from "./SignForm";
+  import BaseInput from "../../components/BaseInput";
+  import BaseButton from "../../components/BaseButton";
   import TimelineLite from "gsap";
   export default {
     name: "SignIn",
-    components: {SignForm, SideBar},
+    components: {BaseButton, BaseInput, SignForm, BaseSidebar, BaseCard},
     data() {
       return {
-        userInfo: {
+        user: {
           username: '',
           password: ''
         }
@@ -45,15 +53,37 @@
     },
     mounted() {
       this.initAnimation();
+      localStorage.clear();
     },
     methods: {
+      startLoading(flag) {
+        TimelineLite.to('.base-loader', {duration: 0.3, pointerEvents: flag ? 'auto' : 'none', opacity: flag ? 1 : 0});
+      },
       initAnimation() {
         TimelineLite.to('.sign-in', {duration: 0.3, height: '60vh', opacity: 1});
       },
-      signIn() {
-        this.$router.push('/home/index');
+      async signIn() {
+        this.startLoading(true);
+        const result = await this.$axios.post('/api/user/sign_in', this.user);
+        this.startLoading(false);
+        if (result.data.code === 200) {
+          this.$EventBus.$emit('alertMessage', {type: 'success', message: '登录成功'});
+          localStorage.setItem('userinfo', JSON.stringify(result.data.user));
+          this.$router.push('/home/index');
+        } else {
+          this.inputError(0);
+          this.inputError(1);
+          this.$EventBus.$emit('alertMessage', {type: 'error', message: '登录失败'});
+        }
       },
-      rememberMe() {
+      inputError(index) {
+        let label = this.$el.getElementsByClassName('sign-form')[0].getElementsByTagName('label')[index];
+        let span = label.getElementsByTagName('span')[0];
+        let input = label.getElementsByTagName('input')[0];
+        let svgPath = label.getElementsByTagName('svg')[0].getElementsByTagName('path')[0];
+        span.style.color = this.signUpFlag ? '#2c2c3c' : '#ee2b47';
+        input.style.color = this.signUpFlag ? '#2c2c3c' : '#ee2b47';
+        svgPath.style.color = this.signUpFlag ? '#2c2c3c' : '#ee2b47';
       },
       showSignUp() {
         this.$router.push('/sign-up');
@@ -63,5 +93,6 @@
 </script>
 
 <style scoped lang="scss">
-  .sign-in {}
+  .sign-in {
+  }
 </style>

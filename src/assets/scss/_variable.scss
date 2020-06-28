@@ -1,19 +1,3 @@
-/*
-$highlight: #61afef;
-$highlight-dark: rgba($highlight, 0.8);
-$success: #98c379;
-$success-dark: rgba($success, 0.8);
-$warning: #E6A23C;
-$warning-dark: rgba($warning, 0.8);
-$danger: #F56C6C;
-$danger-dark: rgba($danger, 0.8);
-
-$card-background: #1a202c;
-$card-primary-text: #f7fafc;
-$card-sub-text: #909399;
-$background: #2d3748;
-*/
-
 $highlight: #ee2b47;
 $highlight-dark: rgba($highlight, 0.8);
 $success: #2A9D8F;
@@ -25,75 +9,14 @@ $danger-dark: rgba($danger, 0.8);
 
 $card-background: #2c2c3c;
 $card-primary-text: #f7f7f7;
-$card-sub-text: #909399;
-$background: #3c3c50;
+$card-sub-text: #6d7074;
+$background: #48485e;
 
-$card-box-shadow-left: -10px 0 10px rgba(0, 0, 0, 0.3);
-$card-box-shadow-right: 10px 0 10px rgba(0, 0, 0, 0.3);
-$card-box-shadow-top: 0 -10px 10px rgba(0, 0, 0, 0.3);
-$card-box-shadow-bottom: 0 10px 10px rgba(0, 0, 0, 0.3);
+$card-box-shadow-left: -10px 0 10px rgba(0, 0, 0, 0.2);
+$card-box-shadow-right: 10px 0 10px rgba(0, 0, 0, 0.2);
+$card-box-shadow-top: 0 -10px 10px rgba(0, 0, 0, 0.2);
+$card-box-shadow-bottom: 0 10px 10px rgba(0, 0, 0, 0.2);
 
 $card-box-shadow-around: 3px 3px 12px 0 rgba(0, 0, 0, 0.3);
 
-.base-button {
-  border-radius: 5px;
-  background-color: $highlight;
-  box-shadow: $card-box-shadow-around;
-  font: bold 18px Roboto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all .3s;
-  outline: none;
-  border: none;
-  text-decoration: none;
-  &:hover {
-    background-color: $highlight-dark;
-  }
-}
-
-.card {
-  border-radius: 5px;
-  background-color: $card-background;
-  box-shadow: $card-box-shadow-around;
-  .card-title {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 40px;
-    font: bold 20px Roboto;
-    line-height: 40px;
-    padding: 0 10px 0 10px;
-    color: $highlight;
-    svg > path {
-      margin-right: 10px;
-      color: $highlight;
-    }
-  }
-  .card-right-title {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 40px;
-    font: bold 20px Roboto;
-    line-height: 40px;
-    padding: 0 10px 0 10px;
-    text-align: right;
-    cursor: pointer;
-    color: $highlight;
-    svg > path {
-      margin-right: 10px;
-      color: $highlight;
-    }
-  }
-  .card-container {
-    position: absolute;
-    top: 40px;
-    left: 10px;
-    right: 10px;
-    height: calc(100% - 40px);
-  }
-}
+$pacman-size: 40px;

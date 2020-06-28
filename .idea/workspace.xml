@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="693472d8-dc0c-47c5-9216-4f654c48f48d" name="Default Changelist" comment="init">
+      <change afterPath="$PROJECT_DIR$/src/assets/images/alien.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/movie-night.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/movie-poster.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-1.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-2.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-3.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-4.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-5.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/sign-in-red.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/sign-in.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/sign-up-red.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/sign-up.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/_variable.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BaseButton.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BaseCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BaseHeader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BaseInput.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BaseLoader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BaseLogo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BaseNotification.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BaseSidebar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieCardRow.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieDetail.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieSlider.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieStar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieTopList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Home.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Recommend.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Search.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/sign/Sign.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/sign/SignForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/sign/SignIn.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/sign/SignUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1dlE3benqkFrXs1x45Pg0qBu89s" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Movie" />
+      <recent name="$PROJECT_DIR$/src/views" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="693472d8-dc0c-47c5-9216-4f654c48f48d" name="Default Changelist" comment="" />
+      <created>1592991080480</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592991080480</updated>
+      <workItem from="1592991081812" duration="15624000" />
+      <workItem from="1593013899857" duration="75092000" />
+    </task>
+    <task id="LOCAL-00001" summary="init">
+      <created>1592991234175</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592991234175</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init">
+      <created>1592991251154</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592991251154</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593008940223">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1593008940223" />
+    <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1593046020337">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1593046020336" />
+    <state x="373" y="101" key="CommitChangelistDialog2" timestamp="1593277206139">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="373" y="101" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1593277206139" />
+    <state x="428" y="267" key="IDE.errors.dialog" timestamp="1592991273976">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="428" y="267" key="IDE.errors.dialog/0.0.1680.1050@0.0.1680.1050" timestamp="1592991273976" />
+    <state x="379" y="164" key="SettingsEditor" timestamp="1593220516475">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="379" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1593220516475" />
+    <state x="503" y="231" width="672" height="678" key="search.everywhere.popup" timestamp="1593055465555">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="503" y="231" width="672" height="678" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1593055465555" />
+  </component>
+</project>

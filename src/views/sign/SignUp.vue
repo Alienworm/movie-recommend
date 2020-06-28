@@ -1,107 +1,123 @@
 <template>
-  <div class="sign-up">
-    <button class="switch-button base-button" @click="showSignIn">
+  <BaseCard class="sign-up">
+    <BaseButton class="switch-button" @click.native="showSignIn">
       <font-awesome-icon prefix="fax" icon="sync-alt"></font-awesome-icon>
-    </button>
-    <SideBar :side-bar-image-url="require('../../assets/images/sign-up-red.gif')">
+    </BaseButton>
+    <BaseSidebar :base-sidebar-image-url="require('../../assets/images/sign-up.gif')">
       <i v-for="(menu, index) in menuList" :key="index" @click="goToPage(index)">
         <font-awesome-icon :prefix="menu.icon.prefix" :icon="menu.icon.name"></font-awesome-icon> {{menu.title}}
       </i>
-    </SideBar>
-    <SignForm title="第 一 步">
+    </BaseSidebar>
+    <SignForm title="第 一 步" class="sign-form-hide">
       <form>
-        <label class="text-input">
-          账 号<input type="text" v-model="userInfo.username" />
-        </label>
-        <label class="text-input">
-          密 码<input type="password" v-model="userInfo.password" />
-        </label>
-        <label class="text-input">
-          确 认 密 码<input type="password" v-model="userInfo.confirmPassword" />
-        </label>
+        <BaseInput>
+          <label>
+            <input type="text" v-model="user.username" @focusout="checkUsername"/>
+            <span>账 号</span>
+            <font-awesome-icon prefix="fax" icon="user"></font-awesome-icon>
+          </label>
+        </BaseInput>
+        <BaseInput>
+          <label>
+            <input type="password" v-model="user.password" />
+            <span>密 码</span>
+            <font-awesome-icon prefix="fax" icon="key"></font-awesome-icon>
+          </label>
+        </BaseInput>
+        <BaseInput>
+          <label>
+            <label class="text-input">
+              <input type="password" v-model="user.confirmPassword" @focusout="checkPassword"/>
+              <span>确 认 密 码</span>
+            </label>
+            <font-awesome-icon prefix="fax" icon="key"></font-awesome-icon>
+          </label>
+        </BaseInput>
         <div class="item">
-          <div class="prev-button base-button disable-button">
+          <BaseButton class="prev-button disable-button">
             <font-awesome-icon prefix="fas" icon="arrow-left"></font-awesome-icon>
-          </div>
-          <div class="next-button base-button" @click="nextPage">
+          </BaseButton>
+          <BaseButton class="next-button" @click.native="nextPage">
             <font-awesome-icon prefix="fas" icon="arrow-right"></font-awesome-icon>
-          </div>
+          </BaseButton>
         </div>
       </form>
     </SignForm>
-    <SignForm title="第 二 步">
+    <SignForm title="第 二 步" class="sign-form-hide">
       <form>
         <ul class="movie-type-list">
-          <li class="movie-type base-button" v-for="(type, index) in movieTypeList" :key="index" @click="selectMovieType(index, type)">{{type}}</li>
+          <BaseButton class="movie-type" v-for="(type, index) in movieTypeList" :key="index" @click.native="selectMovieType(index, type)">{{type}}</BaseButton>
         </ul>
         <div class="item">
-          <div class="prev-button base-button" @click="prevPage">
+          <BaseButton class="prev-button" @click.native="prevPage">
             <font-awesome-icon prefix="fas" icon="arrow-left"></font-awesome-icon>
-          </div>
-          <div class="next-button base-button" @click="nextPage">
+          </BaseButton>
+          <BaseButton class="next-button" @click.native="nextPage">
             <font-awesome-icon prefix="fas" icon="arrow-right"></font-awesome-icon>
-          </div>
+          </BaseButton>
         </div>
       </form>
     </SignForm>
-    <SignForm title="第 三 步">
+    <SignForm title="第 三 步" class="sign-form-hide">
       <form>
-        <label class="text-input">
-          年 龄<input type="text" v-model="userInfo.age" />
-        </label>
-        <label class="text-input">
-          地 区
-          <select v-model="userInfo.zone">
-            <option v-for="(value, index) in movieZoneList" :key="index" :value="value">{{value}}</option>
-          </select>
-        </label>
-        <button class="base-button" @click="signUp()">注 册</button>
+        <BaseInput>
+          <label>
+            <input type="text" v-model="user.age" />
+            <span>年 龄</span>
+            <font-awesome-icon prefix="fas" icon="user"></font-awesome-icon>
+          </label>
+        </BaseInput>
+        <BaseInput>
+          <label class="text-input">
+            <input type="text" v-model="user.region" />
+            <span>地 区</span>
+            <font-awesome-icon prefix="fas" icon="map-marker-alt"></font-awesome-icon>
+          </label>
+        </BaseInput>
+        <BaseButton @click.native="signUp">注 册</BaseButton>
         <div class="item">
-          <div class="prev-button base-button" @click="prevPage()">
+          <BaseButton class="prev-button" @click.native="prevPage">
             <font-awesome-icon prefix="fas" icon="arrow-left"></font-awesome-icon>
-          </div>
-          <div class="next-button base-button disable-button">
+          </BaseButton>
+          <BaseButton class="next-button disable-button">
             <font-awesome-icon prefix="fas" icon="arrow-right"></font-awesome-icon>
-          </div>
+          </BaseButton>
         </div>
       </form>
     </SignForm>
-  </div>
+  </BaseCard>
 </template>
 
 <script>
+  import BaseCard from "../../components/BaseCard";
+  import BaseSidebar from "../../components/BaseSidebar";
   import TimelineLite from "gsap";
-  import SideBar from "../../components/SideBar";
+  import BaseButton from "../../components/BaseButton";
   import SignForm from "./SignForm";
-
+  import BaseInput from "../../components/BaseInput";
   export default {
     name: "SignUp",
-    components: {SignForm, SideBar},
+    components: {BaseInput, SignForm, BaseButton, BaseSidebar, BaseCard},
     data() {
       return {
+        signUpFlag: false,
         menuList: [
           {title: '填写账号密码', icon: {prefix: 'far', name: 'dot-circle'}},
           {title: '喜欢的电影类型', icon: {prefix: 'far', name: 'dot-circle'}},
           {title: '完善个人信息', icon: {prefix: 'far', name: 'dot-circle'}},
         ],
-        userInfo: {
+        user: {
           username: '',
           password: '',
           confirmPassword: '',
           selectedMovieTypeList: [],
           age: '',
-          zone: ''
+          region: ''
         },
         movieTypeList: [
           '剧情', '喜剧', '动作', '爱情', '科幻', '动画', '悬疑',
-          '惊悚', '恐怖', '犯罪', '同性', '音乐', '歌舞', '传记',
-          '历史', '战争', '西部', '奇幻', '冒险', '灾难', '武侠'
-        ],
-        movieZoneList: [
-          '中国大陆', '美国', '香港', '台湾', '日本',
-          '韩国', '英国', '法国', '德国', '意大利',
-          '西班牙', '印度', '泰国', '俄罗斯', '伊朗',
-          '加拿大', '澳大利亚', '爱尔兰', '瑞典', '巴西', '丹麦'
+          '惊悚', '恐怖', '犯罪', '音乐', '歌舞', '传记', '历史',
+          '战争', '西部', '奇幻', '冒险', '灾难', '武侠'
         ],
         currentPage: 0
       }
@@ -109,20 +125,33 @@
     mounted() {
       this.initAnimation();
       this.goToPage(0);
+      localStorage.clear();
     },
     methods: {
+      startLoading(flag) {
+        TimelineLite.to('.base-loader', {duration: 0.3, pointerEvents: flag ? 'auto' : 'none', opacity: flag ? 1 : 0});
+      },
       initAnimation() {
         TimelineLite.to('.sign-up', {duration: 0.3, height: '60vh', opacity: 1});
+      },
+      showSignIn() {
+        this.$router.push('/sign-in');
       },
       prevPage() {
         if (this.currentPage !== 0) this.goToPage(this.currentPage - 1);
       },
       nextPage() {
-        if (this.currentPage !== 2) this.goToPage(this.currentPage + 1);
+        if (this.signUpFlag === false || this.user.username === '' || this.user.password === '' || this.user.confirmPassword === '')
+          this.$EventBus.$emit('alertMessage', {type: 'error', message: '输入的信息有误'});
+        else if (this.currentPage !== 2) this.goToPage(this.currentPage + 1);
       },
       goToPage(index) {
+        if (this.currentPage === 0 && index !== 0 && this.signUpFlag === false) {
+          this.$EventBus.$emit('alertMessage', {type: 'error', message: '输入的信息有误'});
+          return;
+        }
         this.currentPage = index;
-        let itemList = document.getElementsByTagName('i');
+        let itemList = document.getElementsByClassName('base-sidebar')[0].getElementsByTagName('i');
         let signForm = document.getElementsByClassName('sign-form');
         for (let i = 0; i < itemList.length; i++) {
           itemList[i].classList.remove('i-selected');
@@ -132,23 +161,45 @@
         signForm[index].classList.remove('sign-form-hide');
       },
       selectMovieType(index, movieType) {
-        if (this.userInfo.selectedMovieTypeList.indexOf(movieType) === -1) {
-          this.userInfo.selectedMovieTypeList.push(movieType);
+        if (this.user.selectedMovieTypeList.indexOf(movieType) === -1) {
+          this.user.selectedMovieTypeList.push(movieType);
           document.getElementsByClassName('movie-type')[index].classList.add('movie-type-selected');
         } else {
-          this.userInfo.selectedMovieTypeList.splice(
-            this.userInfo.selectedMovieTypeList.indexOf(movieType),
-            1
-          );
+          this.user.selectedMovieTypeList.splice(this.user.selectedMovieTypeList.indexOf(movieType), 1);
           document.getElementsByClassName('movie-type')[index].classList.remove('movie-type-selected');
         }
       },
-      signUp() {
-        this.$router.push('/home/index');
+      async checkUsername() {
+        const result = await this.$axios.post('/api/user/check_username', this.user);
+        this.signUpFlag = result.data.code === 200;
+        this.inputError(0);
       },
-      showSignIn() {
-        this.$router.push('/sign-in');
-      }
+      checkPassword() {
+        this.signUpFlag = this.user.password === this.user.confirmPassword;
+        this.inputError(2);
+      },
+      inputError(index) {
+        let label = this.$el.getElementsByClassName('sign-form')[0].getElementsByTagName('label')[index];
+        let span = label.getElementsByTagName('span')[0];
+        let input = label.getElementsByTagName('input')[0];
+        let svgPath = label.getElementsByTagName('svg')[0].getElementsByTagName('path')[0];
+        span.style.color = this.signUpFlag ? '#2c2c3c' : '#ee2b47';
+        input.style.color = this.signUpFlag ? '#2c2c3c' : '#ee2b47';
+        svgPath.style.color = this.signUpFlag ? '#2c2c3c' : '#ee2b47';
+      },
+      async signUp() {
+        this.user['favortype'] = this.user.selectedMovieTypeList.join('@_@');
+        this.startLoading(true);
+        const result = await this.$axios.post('/api/user/sign_up', this.user);
+        this.startLoading(false);
+        if (result.data.code === 200) {
+          this.$EventBus.$emit('alertMessage', {type: 'success', message: '注册成功'});
+          localStorage.setItem('userinfo', JSON.stringify(result.data.user));
+          this.$router.push('/home/index');
+        } else {
+          this.$EventBus.$emit('alertMessage', {type: 'error', message: '注册失败'});
+        }
+      },
     }
   }
 </script>
@@ -157,8 +208,8 @@
   .prev-button,
   .next-button {
     position: relative;
-    width: 120px;
-    height: 40px;
+    width: 120px !important;
+    height: 50px;
   }
   .disable-button {
     background-color: $card-sub-text;
@@ -177,9 +228,8 @@
     flex-wrap: wrap;
     .movie-type {
       position: relative;
-      width: 70px;
+      width: 60px;
       height: 40px;
-      border-radius: 5px;
       box-sizing: content-box;
       margin: 5px;
       background-color: $card-sub-text;

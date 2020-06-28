@@ -3,14 +3,16 @@ import './plugins/axios';
 import './plugins/fontawesome';
 import App from './App.vue';
 import router from './router';
-import axios from './api';
-import './mock/index.js';
 
 Vue.config.productionTip = false;
-Vue.prototype.$ajax = axios;
 Vue.prototype.$EventBus = new Vue();
+
+let oMeta = document.createElement('meta');
+oMeta.content = 'no-referrer';
+oMeta.name = 'referrer';
+document.getElementsByTagName('head')[0].appendChild(oMeta);
 
 new Vue({
   router,
   render: h => h(App)
-}).$mount('#app');
+}).$mount('#app')

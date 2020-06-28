@@ -1,12 +1,19 @@
 <template>
-  <div :class="size === 'small' ? 'movie-star-small' : 'movie-star'">
-    <div class="movie-star-container movie-star-container-1">
-      <font-awesome-icon prefix="fas" icon="star" v-for="index in 10" :key="index"></font-awesome-icon>
+  <div class="movie-star" :style="{width: width, height: height, paddingRight: 'calc(' + starMarginLeft + '/2)'}">
+    <div class="movie-star-container movie-star-container-1" :style="{lineHeight: height}">
+      <font-awesome-icon prefix="fas"
+                         icon="star"
+                         v-for="index in 10"
+                         :key="index"
+                         :style="{height: starWidth, width: starWidth, marginLeft: starMarginLeft}"></font-awesome-icon>
     </div>
-    <div class="movie-star-container movie-star-container-2">
-      <font-awesome-icon prefix="fas" icon="star" v-for="index in 10" :key="index"></font-awesome-icon>
+    <div class="movie-star-container movie-star-container-2" :style="{lineHeight: height}">
+      <font-awesome-icon prefix="fas"
+                         icon="star"
+                         v-for="index in 10"
+                         :key="index"
+                         :style="{height: starWidth, width: starWidth, marginLeft: starMarginLeft}"></font-awesome-icon>
     </div>
-    <slot></slot>
   </div>
 </template>
 
@@ -14,22 +21,23 @@
   export default {
     name: "MovieStar",
     props: {
-      size: String
+      width: String,
+      height: String,
+      starWidth: String,
+      starMarginLeft: String
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .movie-star,
-  .movie-star-small {
-    height: 30px;
+  .movie-star {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .movie-star-container {
       position: absolute;
-      top: 0;
-      left: 50px;
-      width: 300px;
+      width: auto;
       height: 100%;
-      line-height: 30px;
       svg {
         width: 20px;
         height: 20px;
@@ -45,16 +53,7 @@
     .movie-star-container-2 {
       z-index: 1;
       svg > path {
-        color: $card-sub-text;
-      }
-    }
-  }
-  .movie-star-small {
-    .movie-star-container {
-      left: -3px;
-      width: 100%;
-      svg {
-        margin-left: 6px;
+        color: #bdbcbc;
       }
     }
   }

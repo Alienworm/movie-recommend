@@ -1,6 +1,5 @@
 module.exports = {
   css: {
-    extract: true,
     sourceMap: false,
     loaderOptions: {
       sass: {
@@ -14,6 +13,7 @@ module.exports = {
     proxy: {
       "/api": {
         target: "http://203.195.139.146:5000",
+        //target: "http://127.0.0.1:5000",
         changeOrigin: true,
         pathRewrite: {
           "^/api": "/"
