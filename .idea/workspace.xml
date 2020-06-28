@@ -2,47 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="693472d8-dc0c-47c5-9216-4f654c48f48d" name="Default Changelist" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/alien.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/movie-night.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/movie-poster.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-4.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/poster-5.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/sign-in-red.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/sign-in.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/sign-up-red.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/sign-up.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/_variable.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BaseButton.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BaseCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BaseHeader.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BaseInput.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BaseLoader.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BaseLogo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BaseNotification.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BaseSidebar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieCardRow.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieDetail.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieSlider.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieStar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieTopList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/Index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/Recommend.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/Search.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/sign/Sign.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/sign/SignForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/sign/SignIn.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/sign/SignUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugins/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/axios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/app.766b0169.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/img/movie-night.a50d455d.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/img/sign-in.f0c3e3c1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/img/sign-up.6be24500.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/app.abb8cc79.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/app.abb8cc79.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/chunk-vendors.910debbd.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/chunk-vendors.910debbd.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BaseHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BaseHeader.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sign/SignIn.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sign/SignIn.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sign/SignUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sign/SignUp.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +75,7 @@
       <updated>1592991080480</updated>
       <workItem from="1592991081812" duration="15624000" />
       <workItem from="1593013899857" duration="75092000" />
+      <workItem from="1593306032002" duration="835000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1592991234175</created>

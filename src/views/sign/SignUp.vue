@@ -135,7 +135,7 @@
         TimelineLite.to('.sign-up', {duration: 0.3, height: '60vh', opacity: 1});
       },
       showSignIn() {
-        this.$router.push('/sign-in');
+        this.$router.push('/sign/sign-in');
       },
       prevPage() {
         if (this.currentPage !== 0) this.goToPage(this.currentPage - 1);

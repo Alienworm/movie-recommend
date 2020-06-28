@@ -37,7 +37,7 @@
       },
       signOut() {
         localStorage.clear();
-        this.$router.push('/sign-in')
+        this.$router.push('/sign/sign-in')
       }
     }
   }

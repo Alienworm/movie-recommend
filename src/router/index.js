@@ -11,18 +11,19 @@ import Recommend from "../views/Recommend";
 Vue.use(VueRouter);
 
 const routes = [
+  { path: '/', redirect: { name: 'Index' }},
   {
-    path: '/',
+    path: '/sign',
     name: 'Sign',
     component: Sign,
     children: [
       {
-        path: "/sign-in",
+        path: "/sign/sign-in",
         name: "SignIn",
         component: SignIn
       },
       {
-        path: "/sign-up",
+        path: "/sign/sign-up",
         name: "SignUp",
         component: SignUp
       }

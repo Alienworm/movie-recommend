@@ -86,7 +86,7 @@
         svgPath.style.color = this.signUpFlag ? '#2c2c3c' : '#ee2b47';
       },
       showSignUp() {
-        this.$router.push('/sign-up');
+        this.$router.push('/sign/sign-up');
       }
     }
   }
