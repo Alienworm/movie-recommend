@@ -1,14 +1,14 @@
-import Vue from 'vue'
-import './plugins/axios'
-import './plugins/fontawesome'
-import App from './App.vue'
-import router from './router'
-import base from './plugins/public';
+import Vue from 'vue';
+import './plugins/axios';
+import './plugins/fontawesome';
+import App from './App.vue';
+import router from './router';
+import axios from './api';
+import './mock/index.js';
 
-Vue.use(base);
-
-Vue.config.productionTip = false
-Vue.prototype.$EventBus = new Vue()
+Vue.config.productionTip = false;
+Vue.prototype.$ajax = axios;
+Vue.prototype.$EventBus = new Vue();
 
 new Vue({
   router,

@@ -1,13 +1,14 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Sign from "../views/Sign/Sign";
-import SignIn from "../views/Sign/SignIn";
-import SignUp from "../views/Sign/SignUp";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Sign from "../views/sign/Sign";
+import SignIn from "../views/sign/SignIn";
+import SignUp from "../views/sign/SignUp";
 import Home from "../views/Home";
 import Index from "../views/Index";
 import Search from "../views/Search";
+import Result from "../views/Result";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
   const routes = [
   {
@@ -41,10 +42,15 @@ Vue.use(VueRouter)
         path: "/home/search",
         name: "Search",
         component: Search
+      },
+      {
+        path: "/home/result",
+        name: "Result",
+        component: Result
       }
     ]
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
@@ -52,4 +58,4 @@ const router = new VueRouter({
   routes
 });
 
-export default router
+export default router;

@@ -1,26 +1,14 @@
 <template>
   <div class="index">
-    <ImageSlider top="20px" left="20px" right="20px" height="380px"></ImageSlider>
-    <div class="new-movies card">
-      <div class="card-title">
-        <div class="card-left-title">
-          <font-awesome-icon prefix="fas" icon="random"></font-awesome-icon> 随 机 电 影
-        </div>
-        <div class="card-right-title" @click="goToPageTmp(1, '/home/search')">更 多</div>
-      </div>
-      <MovieCardList :movie-list="movieList"></MovieCardList>
-    </div>
-    <div class="top-movies card">
-      <div class="card-title">
-        <div class="card-left-title">
-          <font-awesome-icon prefix="fas" icon="fire"></font-awesome-icon> TOP 10
-        </div>
-      </div>
-      <ul class="top-movie-list">
-        <li class="top-movie-item" v-for="(movie, index) in movieList" :key="index" @click="showMovieDetail">
-          <span>{{index + 1}}</span>
-          <span>{{movie.title}}</span>
-          <span>{{movie.rating}}</span>
+    <MovieSlider></MovieSlider>
+    <MovieCardLineList title="随 机 电 影" :ratinged="false" :icon="{prefix: 'fas', name: 'random'}" :movie-list="top10MovieList">
+      <div class="card-right-title" @click="goToPage(1)">更 多</div>
+    </MovieCardLineList>
+    <div class="top-movie-list card">
+      <div class="card-title"><font-awesome-icon prefix="fas" icon="fire"></font-awesome-icon> TOP 10</div>
+      <ul>
+        <li v-for="(movie, index) in top10MovieList" :key="index" @click="showMovieDetailCard(movie)">
+          <span>{{index + 1}}</span><span>{{movie.movieName}}</span><span>{{movie.movieAverating}}</span>
         </li>
       </ul>
     </div>
@@ -28,109 +16,115 @@
 </template>
 
 <script>
-  import ImageSlider from "../components/ImageSlider";
-  import MovieCardList from "../components/MovieCardList";
   import TimelineLite from "gsap";
+  import MovieSlider from "../components/MovieSlider";
+  import MovieCard from "../components/MovieCard";
+  import MovieCardLineList from "../components/MovieCardLineList";
+
   export default {
     name: "Index",
-    components: {MovieCardList, ImageSlider},
+    components: {MovieCardLineList, MovieCard, MovieSlider},
     data() {
       return {
-        movieList: [
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'}
-        ]
+        top10MovieList: []
       }
     },
     mounted() {
+      this.initAnimation();
       this.goToPage(0);
-      TimelineLite.to('.home-container', {time: 1, opacity: 1, delay: 0.7});
+      this.getTop10MovieList();
     },
     methods: {
-      showMovieDetail() {
-        this.$EventBus.$emit("updateMovieInfo", this.movie);
-        TimelineLite.to('.movie-detail-card', {time: 0.5, width: '100vw', height: '100vh', top: 0, left: 0, opacity: 1, pointerEvents: 'auto'});
-        TimelineLite.to('.movie-detail-card-container', {time: 0.5, opacity: 1, delay: 0.5, pointerEvents: 'auto'});
+      initAnimation() {
+        TimelineLite.to('.home-container', {duration: 0.3, opacity: 1, delay: 0.3});
       },
-      goToPageTmp(index, url) {
-        this.goToPage(index);
-        this.$router.push(url);
-      }
+      showMovieDetailCard(movie) {
+        this.$EventBus.$emit("updateMovieInfo", movie);
+        TimelineLite.to('.movie-detail-card', {duration: 0.5, width: '100vw', height: '100vh', top: 0, left: 0, opacity: 1, pointerEvents: 'auto'});
+        TimelineLite.to('.movie-detail-card-container', {duration: 0.5, opacity: 1, delay: 0.5, pointerEvents: 'auto'});
+      },
+      sortRating(a, b) {
+        return b.movieAverating - a.movieAverating;
+      },
+      getTop10MovieList() {
+        this.$ajax.post('/movie/getRandomMovie', {count: 10}).then((data) => {
+          this.top10MovieList = data.data;
+          this.top10MovieList.sort(this.sortRating);
+        });
+      },
+      goToPage(index) {
+        let itemList = document.getElementsByClassName('side-bar')[0].getElementsByTagName('i');
+        for (let i = 0; i < itemList.length; i++)
+          itemList[i].classList.remove('i-selected');
+        itemList[index].classList.add('i-selected');
+        if (index === 1) this.$router.push('/home/search');
+      },
     }
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .index {
-    .new-movies {
+    .movie-slider {
       position: absolute;
-      top: 420px;
-      bottom: 20px;
+      top: 20px;
+      left: 20px;
+      width: calc(100% - 40px);
+      height: 400px;
+    }
+    .movie-card-line-list {
+      position: absolute;
+      top: 440px;
       left: 20px;
       width: 70%;
+      height: 460px;
     }
-    .top-movies {
+    .top-movie-list {
       position: absolute;
-      top: 420px;
-      bottom: 20px;
+      top: 440px;
       right: 20px;
       width: calc(30% - 60px);
-      .top-movie-list {
+      height: 460px;
+      ul {
         position: absolute;
-        top: 60px;
-        height: calc(100% - 80px);
-        left: 20px;
-        right: 20px;
-        overflow-x: scroll;
+        top: 40px;
+        left: 10px;
+        right: 10px;
+        height: calc(100% - 40px);
+        overflow-y: scroll;
+        overflow-x: hidden;
+        list-style-type: none;
         display: flex;
         align-items: center;
         flex-direction: column;
-        .top-movie-item {
+        li {
           position: relative;
-          flex: 1 0 auto;
           width: 100%;
           height: 40px;
-          margin: 10px 0 10px 0;
+          flex: none;
+          margin-bottom: 10px;
           display: flex;
           justify-content: space-between;
+          align-items: center;
           cursor: pointer;
+          &:hover {
+            span {
+              color: $highlight;
+            }
+          }
           span {
-            position: absolute;
-            display: flex;
-            justify-content: left;
-            align-items: center;
-            font: bold 18px Roboto;
             transition: all 0.3s;
+            text-align: left;
+            font: bold 18px Roboto;
           }
           span:nth-child(1) {
-            top: 0;
-            left: 0;
-            height: 40px;
             width: 40px;
           }
           span:nth-child(2) {
-            top: 0;
-            left: 50px;
-            right: 50px;
-            bottom: 0;
-            &:hover {
-              color: $primary;
-            }
+            width: calc(100% - 80px);
           }
           span:nth-child(3) {
-            top: 0;
-            right: 0;
-            height: 40px;
             width: 40px;
-            color: $danger;
           }
         }
       }

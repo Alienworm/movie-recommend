@@ -1,58 +1,48 @@
 <template>
   <div class="search">
     <div class="search-bar">
-      <div class="search-bar-movie-type-card card">
-        <div class="card-title">
-          <div class="card-left-title">
-            <font-awesome-icon prefix="fas" icon="tags"></font-awesome-icon> 类 型
-          </div>
-        </div>
-        <div class="search-bar-movie-type-list">
-          <div class="search-bar-movie-type-item base-button" v-for="(type, index) in movieTypeList" :key="index" @click="selectMovieType(index, type)">
-            {{type}}
-          </div>
-        </div>
+      <div class="search-movie-type card">
+        <div class="card-title"><font-awesome-icon prefix="fas" icon="tags"></font-awesome-icon> 电 影 类 型</div>
+        <ul class="card-container">
+          <li class="search-movie-type-li base-button" v-for="(type, index) in movieTypeList" :key="index" @click="selectMovieType(index, type)">{{type}}</li>
+        </ul>
       </div>
-      <div class="search-bar-movie-zone-card card">
-        <div class="card-title">
-          <div class="card-left-title">
-            <font-awesome-icon prefix="fas" icon="globe-asia"></font-awesome-icon> 地 区
-          </div>
-        </div>
-        <div class="search-bar-movie-zone-list">
-          <div class="search-bar-movie-zone-item base-button" v-for="(zone, index) in movieZoneList" :key="index" @click="selectMovieZone(index, zone)">
-            {{zone}}
-          </div>
-        </div>
+      <div class="search-movie-zone card">
+        <div class="card-title"><font-awesome-icon prefix="fas" icon="globe-asia"></font-awesome-icon> 电 影 地 区</div>
+        <ul class="card-container">
+          <li class="search-movie-zone-li base-button" v-for="(zone, index) in movieZoneList" :key="index" @click="selectMovieZone(index, zone)">{{zone}}</li>
+        </ul>
       </div>
-      <div class="search-bar-movie-title-card card">
-        <div class="card-title">
-          <div class="card-left-title">
-            <font-awesome-icon prefix="fas" icon="keyboard"></font-awesome-icon> 关 键 词
-          </div>
-        </div>
-        <form action="">
+      <div class="search-movie-title card">
+        <div class="card-title"><font-awesome-icon prefix="fas" icon="globe-asia"></font-awesome-icon> 电 影 名 称</div>
+        <div class="card-container">
           <label class="text-input">
-            电 影 名 称
-            <input type="text"  v-model="movieTitle" />
+            <input type="text" v-model="movieTitle" />
           </label>
-          <button class="form-button base-button" @click="search()">搜 索</button>
-        </form>
+          <button class="base-button">搜 索</button>
+        </div>
       </div>
     </div>
-    <MovieCardGroup class="search-movie-card-grop" :movie-list="movieList"></MovieCardGroup>
+    <div class="search-movie-list">
+      <MovieCard v-for="(movie, index) in movieList" :key="index" :movie="movie" :ratinged="false"></MovieCard>
+    </div>
+    <div class="search-load-more base-button" v-if="more" @click="getMovieList">
+      加 载 更 多
+    </div>
   </div>
 </template>
 
 <script>
   import TimelineLite from "gsap";
-  import MovieCardGroup from "../components/MovieCardGroup";
+  import MovieCard from "../components/MovieCard";
+
   export default {
     name: "Search",
-    components: {MovieCardGroup},
+    components: {MovieCard},
     data() {
       return {
         movieTitle: '',
+        movieList: [],
         movieTypeList: [
           '剧情', '喜剧', '动作', '爱情', '科幻', '动画', '悬疑',
           '惊悚', '恐怖', '犯罪', '音乐', '歌舞', '传记', '历史',
@@ -65,136 +55,174 @@
           '加拿大', '澳大利亚', '爱尔兰', '瑞典', '巴西', '丹麦'
         ],
         selectedMovieTypeList: [],
-        selectedMovieZoneList: [],
-        movieList: [
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'},
-          {title: 'TOGO', rating: '9.0'}
-        ]
+        selectedMovieZoneeList: [],
+        more: true,
       }
     },
     mounted() {
-      this.goToPage(1, '');
-      TimelineLite.to('.home-container', {time: 0.5, opacity: 1, delay: 0.7});
+      this.initAnimation();
+      this.goToPage(1);
+      this.selectMovieType(0,'剧情');
+      this.selectMovieZone(0, '中国大陆');
     },
     methods: {
-      search() {
-
+      initAnimation() {
+        TimelineLite.to('.home-container', {duration: 0.3, opacity: 1, delay: 0.3});
+      },
+      getMovieList() {
+        this.$ajax.post('/movie/getRandomMovie', {count: 20}).then((data) => {
+          this.movieList = this.movieList.concat(data.data);
+        });
       },
       selectMovieType(index, movieType) {
         if (this.selectedMovieTypeList.indexOf(movieType) === -1) {
           this.selectedMovieTypeList.push(movieType);
-          document.getElementsByClassName('search-bar-movie-type-item')[index].classList.add('search-bar-movie-item-selected');
+          document.getElementsByClassName('search-movie-type-li')[index].classList.add('li-selected');
+          this.getMovieList();
         } else {
-          this.selectedMovieTypeList.splice(
-            this.selectedMovieTypeList.indexOf(movieType),
-            1
-          );
-          document.getElementsByClassName('search-bar-movie-type-item')[index].classList.remove('search-bar-movie-item-selected');
+          this.selectedMovieTypeList.splice(this.selectedMovieTypeList.indexOf(movieType), 1);
+          document.getElementsByClassName('search-movie-type-li')[index].classList.remove('li-selected');
         }
       },
       selectMovieZone(index, movieZone) {
-        if (this.selectedMovieZoneList.indexOf(movieZone) === -1) {
-          this.selectedMovieZoneList.push(movieZone);
-          document.getElementsByClassName('search-bar-movie-zone-item')[index].classList.add('search-bar-movie-item-selected');
+        if (this.selectedMovieZoneeList.indexOf(movieZone) === -1) {
+          this.selectedMovieZoneeList.push(movieZone);
+          document.getElementsByClassName('search-movie-zone-li')[index].classList.add('li-selected');
+          this.getMovieList();
         } else {
-          this.selectedMovieZoneList.splice(
-            this.selectedMovieZoneList.indexOf(movieZone),
-            1
-          );
-          document.getElementsByClassName('search-bar-movie-zone-item')[index].classList.remove('search-bar-movie-item-selected');
+          this.selectedMovieZoneeList.splice(this.selectedMovieZoneeList.indexOf(movieZone), 1);
+          document.getElementsByClassName('search-movie-zone-li')[index].classList.remove('li-selected');
         }
+      },
+      goToPage(index) {
+        let itemList = document.getElementsByClassName('side-bar')[0].getElementsByTagName('i');
+        for (let i = 0; i < itemList.length; i++)
+          itemList[i].classList.remove('i-selected');
+        itemList[index].classList.add('i-selected');
       },
     }
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .search {
     .search-bar {
       position: absolute;
-      top: 20px;
-      left: 20px;
-      right: 20px;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 240px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .search-bar-movie-type-card,
-      .search-bar-movie-zone-card,
-      .search-bar-movie-title-card {
-        position: relative;
-        width: 35%;
-        height: 100%;
-        form {
-          position: absolute;
-          top: 60px;
-          bottom: 0;
-          width: 100%;
-          padding: 0 20px 0 20px;
-        }
-        .search-bar-movie-type-list,
-        .search-bar-movie-zone-list {
-          position: absolute;
-          top: 60px;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          overflow-x: scroll;
+      background-color: $background;
+      z-index: 3;
+      overflow: hidden;
+      .search-movie-type,
+      .search-movie-zone,
+      .search-movie-title {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        height: 200px;
+        ul {
           display: flex;
+          justify-content: right;
           align-items: center;
-          justify-content: space-between;
           flex-wrap: wrap;
-          padding: 0 10px 0 10px;
-          .search-bar-movie-type-item,
-          .search-bar-movie-zone-item {
-            position: relative;
-            flex: 1 0 auto;
-            width: 70px;
+          right: -10px;
+          li {
+            width: 80px;
             height: 30px;
-            border-radius: 5px;
-            margin: 0 10px 15px 10px;
-          }
-          .search-bar-movie-item-selected {
-            background-color: $success !important;
+            margin-right: 20px;
+            background-color: $card-sub-text;
             &:hover {
-              background-color: rgba($success, 0.8) !important;
+              background-color: rgba($card-sub-text, 0.8);
+            }
+          }
+          .li-selected {
+            background-color: $highlight;
+            &:hover {
+              background-color: $highlight-dark;
             }
           }
         }
       }
-      .search-bar-movie-title-card{
-        position: relative;
-        width: 25%;
-        height: 100%;
+      .search-movie-type {
+        width: 35%;
+        ul {
+          li {
+            width: 60px;
+          }
+        }
+      }
+      .search-movie-zone {
+        width: 40%;
+        left: calc(35% + 40px);
+        ul {
+          li {
+            width: 80px;
+          }
+        }
+      }
+      .search-movie-title {
+        width: calc(25% - 80px);
+        left: unset;
+        right: 20px;
+        .card-container {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          flex-direction: column;
+          .text-input {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              outline: none;
+              border: none;
+              text-decoration: none;
+              padding: 0 20px 0 20px;
+              font: bold 18px Roboto;
+              border-radius: 5px;
+              background-color: $card-primary-text;
+              transition: all 0.3s;
+              color: $card-background;
+            }
+          }
+          button {
+            position: relative;
+            width: 100%;
+            height: 40px;
+          }
+        }
       }
     }
-    .search-movie-card-grop {
-      position: absolute;
-      top: 260px;
-      left: 0;
-      width: 100%;
-      min-height: calc(100vh - 260px);
-      padding: 10px 20px 20px 20px;
+    .search-movie-list {
+      position: relative;
+      top: 240px;
+      left: 20px;
+      width: calc(100% - 40px);
+      min-height: calc(100% - 260px);
       display: flex;
       justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
+      .movie-card {
+        margin: 0 20px 20px 0;
+      }
+      .movie-card:nth-child(5n) {
+        margin-right: 0;
+      }
+    }
+    .search-load-more {
+      position: relative;
+      top: 240px;
+      left: 20px;
+      width: calc(100% - 40px);
+      height: 40px;
+      margin-bottom: 20px;
     }
   }
 </style>

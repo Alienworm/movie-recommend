@@ -1,8 +1,4 @@
 module.exports = {
-  outputDir: "/dist",
-  lintOnSave: true,
-  runtimeCompiler: false,
-  productionSourceMap: false,
   css: {
     extract: true,
     sourceMap: false,
@@ -12,7 +8,6 @@ module.exports = {
       }
     }
   },
-  parallel: require("os").cpus().length > 1,
   devServer: {
     hot: true,
     open: true,
@@ -26,4 +21,4 @@ module.exports = {
       }
     }
   }
-};
+}
